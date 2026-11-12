@@ -28,8 +28,8 @@ function resolveCategory(slug: string) {
 
 export const dynamicParams = true
 
-// Listings are fetched server-side (Round 3); ISR refreshes the merged
-// seed + Firestore grid hourly — far inside the 7-day release cycle.
+// Listings are fetched server-side (Round 3); the merged seed +
+// Firestore grid revalidates every 30 days (revalidate = 2592000 below).
 export const revalidate = 2592000
 
 export function generateStaticParams() {

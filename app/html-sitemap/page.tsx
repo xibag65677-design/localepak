@@ -37,6 +37,7 @@ const CORE_LINKS: { label: string; href: string }[] = [
   { label: 'FAQs', href: '/faqs' },
   { label: 'Help Center', href: '/help-center' },
   { label: 'Customer Support', href: '/support' },
+  { label: 'Find Us Online', href: '/find-us' },
 ]
 
 const POLICY_LINKS: { label: string; href: string }[] = [

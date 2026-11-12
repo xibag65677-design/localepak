@@ -41,8 +41,28 @@ export default function AdminPaymentsPage() {
     const load = async () => {
       try {
         const snap = await getDocs(collection(db, 'payment_proofs'))
-        const rows: Item[] = []
+        let rows: Item[] = []
         snap.forEach((d) => rows.push({ id: d.id, data: d.data() }))
+        // Re-upload REPLACES the old proof: keep only the NEWEST proof
+        // per listing + payment kind (tier, or legacy plan). When a
+        // listing is rejected, the owner pays again and uploads a fresh
+        // screenshot — that new pending proof takes the old rejected
+        // proof's place in this list instead of piling up beside it.
+        // The superseded doc stays in Firestore as an audit trail
+        // (owners cannot delete proofs — the rules let only admins
+        // update/delete payment_proofs — so the replace happens here,
+        // at read time, not by deleting data).
+        const newest = new Map<string, Item>()
+        for (const row of rows) {
+          const kind = row.data.tier || row.data.plan || ''
+          const key = row.data.listingId
+            ? `${row.data.listingType || ''}|${row.data.listingId}|${kind}`
+            : row.id
+          const prev = newest.get(key)
+          const ts = row.data.createdAt?.toMillis?.() || 0
+          if (!prev || ts >= (prev.data.createdAt?.toMillis?.() || 0)) newest.set(key, row)
+        }
+        rows = [...newest.values()]
         // Attach each proof's listing (best effort — a missing listing
         // must never break the proofs list) so proofs re-uploaded
         // against a REJECTED listing carry that context on the card.

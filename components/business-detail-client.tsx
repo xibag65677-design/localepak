@@ -305,7 +305,14 @@ export default function BusinessDetailPage({
                   </span>
                 )}
               </div>
-              <h1 className="text-3xl font-extrabold text-slate-900">{business.name}</h1>
+              <div className="flex flex-wrap items-center gap-2">
+                <h1 className="text-3xl font-extrabold text-slate-900">{business.name}</h1>
+                {business.featured === true && (
+                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-50 text-amber-700 border border-amber-200 text-[11px] font-bold">
+                    <Star className="w-3.5 h-3.5" /> Featured
+                  </span>
+                )}
+              </div>
               <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-500 font-medium">
                 {business.city && (
                   <span className="flex items-center gap-1.5">
