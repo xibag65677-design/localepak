@@ -1,0 +1,36 @@
+rules_version = '2';
+
+// LocalePak Firebase Storage rules
+// - Payment proof screenshots live under payment-proofs/{ownerId}/{file}.
+// - Owners can upload and read their own proofs; admins (users/{uid}.role
+//   == 'admin' in Firestore) can read any proof to verify payments.
+// - Everything else is denied.
+
+service firebase.storage {
+  function isSignedIn() {
+    return request.auth != null;
+  }
+
+  function isAdmin() {
+    return isSignedIn()
+      && firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.role == 'admin';
+  }
+
+  match /payment-proofs/{ownerId}/{file} {
+    // Read: the owner who uploaded it, or an admin reviewing it.
+    allow read: if isSignedIn() && (request.auth.uid == ownerId || isAdmin());
+
+    // Write: the owner only, images only, under 5 MB.
+    allow write: if isSignedIn()
+      && request.auth.uid == ownerId
+      && request.resource.contentType.matches('image/.*')
+      && request.resource.size < 5 * 1024 * 1024;
+
+    allow delete: if isSignedIn() && (request.auth.uid == ownerId || isAdmin());
+  }
+
+  // Deny everything else.
+  match /{allPaths=**} {
+    allow read, write: if false;
+  }
+}

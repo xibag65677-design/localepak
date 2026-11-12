@@ -1,0 +1,44 @@
+{
+  "skills": [
+    {
+      "name": "search-businesses",
+      "description": "Find businesses on LocalePak by keyword, city, or category using the site's public search and listing pages.",
+      "url": "https://www.localepak.com/businesses"
+    },
+    {
+      "name": "browse-categories",
+      "description": "Browse the 24 business categories on LocalePak and open a category page to see its listings.",
+      "url": "https://www.localepak.com/categories"
+    },
+    {
+      "name": "browse-cities",
+      "description": "Browse the 183 cities covered by LocalePak and open a city or city-by-category page to see local listings.",
+      "url": "https://www.localepak.com/cities"
+    },
+    {
+      "name": "read-business-profile",
+      "description": "Read a single business profile page for its phone number, address, services, and customer reviews.",
+      "url": "https://www.localepak.com/businesses"
+    },
+    {
+      "name": "use-public-api",
+      "description": "Read public listings as JSON via the free read-only API: GET /api/v1/businesses?q=&city=&category=, /api/v1/businesses/<slug>, /api/v1/categories, /api/v1/cities. No key needed; max 20 results per page, 60 requests/minute per IP. Spec: https://www.localepak.com/openapi.json.",
+      "url": "https://www.localepak.com/openapi.json"
+    },
+    {
+      "name": "use-mcp-server",
+      "description": "Use the MCP server at /api/mcp (Streamable HTTP, JSON-RPC): tools search_businesses, get_business, list_categories, list_cities. Read-only, no authentication. Server card: https://www.localepak.com/.well-known/mcp/server-card.json.",
+      "url": "https://www.localepak.com/api/mcp"
+    },
+    {
+      "name": "read-blog-guides",
+      "description": "Read practical blog guides for Pakistani business owners, including local SEO and listing guidance.",
+      "url": "https://www.localepak.com/blog"
+    },
+    {
+      "name": "list-a-business",
+      "description": "Explain how a business owner lists on LocalePak: free account at /register, submit at /add-business, choose a tier (Basic PKR 99, Premium PKR 199, Featured PKR 299), pay by Easypaisa, JazzCash or bank transfer, and wait for admin approval. No API submission exists.",
+      "url": "https://www.localepak.com/add-business"
+    }
+  ]
+}

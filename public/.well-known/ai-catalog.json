@@ -1,0 +1,82 @@
+{
+  "specVersion": "1.0",
+  "resources": [
+    {
+      "id": "urn:air:localepak.com:docs",
+      "displayName": "LocalePak agent documentation",
+      "description": "Documentation for AI agents and developers: agent surfaces, authentication, and example requests.",
+      "mediaType": "text/html",
+      "url": "https://www.localepak.com/docs"
+    },
+    {
+      "id": "urn:air:localepak.com:llms-txt",
+      "displayName": "LocalePak llms.txt",
+      "description": "Machine-readable overview of the site: what it is, coverage, and key pages.",
+      "mediaType": "text/markdown",
+      "url": "https://www.localepak.com/llms.txt"
+    },
+    {
+      "id": "urn:air:localepak.com:auth",
+      "displayName": "LocalePak authentication guide",
+      "description": "How agents obtain credentials: none needed for public read-only content; website sign-up for listing owners.",
+      "mediaType": "text/markdown",
+      "url": "https://www.localepak.com/auth.md"
+    },
+    {
+      "id": "urn:air:localepak.com:pricing",
+      "displayName": "LocalePak pricing",
+      "description": "Listing tiers in plain markdown: Basic PKR 99, Premium PKR 199, Featured PKR 299, one-time.",
+      "mediaType": "text/markdown",
+      "url": "https://www.localepak.com/pricing.md"
+    },
+    {
+      "id": "urn:air:localepak.com:index-md",
+      "displayName": "LocalePak homepage in markdown",
+      "description": "Markdown twin of the homepage: what the site is, coverage, and how to find or list a business.",
+      "mediaType": "text/markdown",
+      "url": "https://www.localepak.com/index.md"
+    },
+    {
+      "id": "urn:air:localepak.com:sitemap",
+      "displayName": "LocalePak sitemap",
+      "description": "XML sitemap of the site's indexable public pages.",
+      "mediaType": "application/xml",
+      "url": "https://www.localepak.com/sitemap.xml"
+    },
+    {
+      "id": "urn:air:localepak.com:openapi",
+      "displayName": "LocalePak Public API (OpenAPI)",
+      "description": "OpenAPI 3.1 document for the free read-only public API: search businesses, get one business, list categories and cities. Max 20 results per page, 60 requests per minute per IP, no key needed.",
+      "mediaType": "application/json",
+      "url": "https://www.localepak.com/openapi.json"
+    },
+    {
+      "id": "urn:air:localepak.com:mcp",
+      "displayName": "LocalePak MCP server",
+      "description": "Model Context Protocol server over Streamable HTTP at /api/mcp: tools search_businesses, get_business, list_categories, list_cities. Read-only, no authentication.",
+      "mediaType": "application/json",
+      "url": "https://www.localepak.com/api/mcp"
+    },
+    {
+      "id": "urn:air:localepak.com:mcp-server-card",
+      "displayName": "LocalePak MCP server card",
+      "description": "Server card for the LocalePak MCP server: display name, logo, description, endpoint, and tool list.",
+      "mediaType": "application/json",
+      "url": "https://www.localepak.com/.well-known/mcp/server-card.json"
+    },
+    {
+      "id": "urn:air:localepak.com:oauth-authorization-server",
+      "displayName": "LocalePak authorization-server metadata",
+      "description": "RFC 8414 metadata stating the honest position: LocalePak is not a full OAuth server — no authorization or token endpoint, no client registration; owners sign in with email/password on the website.",
+      "mediaType": "application/json",
+      "url": "https://www.localepak.com/.well-known/oauth-authorization-server"
+    },
+    {
+      "id": "urn:air:localepak.com:oauth-protected-resource",
+      "displayName": "LocalePak protected-resource metadata",
+      "description": "RFC 9728 metadata for the public API resource, naming the real scopes listings:read (public) and listings:write (website session only).",
+      "mediaType": "application/json",
+      "url": "https://www.localepak.com/.well-known/oauth-protected-resource"
+    }
+  ]
+}

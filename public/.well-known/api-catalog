@@ -1,0 +1,63 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://www.localepak.com/",
+      "item": [
+        {
+          "href": "https://www.localepak.com/docs",
+          "type": "text/html",
+          "rel": "help",
+          "title": "LocalePak agent documentation"
+        },
+        {
+          "href": "https://www.localepak.com/llms.txt",
+          "type": "text/markdown",
+          "rel": "describedby",
+          "title": "LocalePak llms.txt"
+        },
+        {
+          "href": "https://www.localepak.com/auth.md",
+          "type": "text/markdown",
+          "rel": "describedby",
+          "title": "LocalePak authentication guide"
+        },
+        {
+          "href": "https://www.localepak.com/pricing.md",
+          "type": "text/markdown",
+          "rel": "describedby",
+          "title": "LocalePak pricing"
+        },
+        {
+          "href": "https://www.localepak.com/sitemap.xml",
+          "type": "application/xml",
+          "rel": "sitemap",
+          "title": "LocalePak sitemap"
+        },
+        {
+          "href": "https://www.localepak.com/openapi.json",
+          "type": "application/json",
+          "rel": "describedby",
+          "title": "LocalePak Public API (OpenAPI 3.1)"
+        },
+        {
+          "href": "https://www.localepak.com/.well-known/mcp/server-card.json",
+          "type": "application/json",
+          "rel": "describedby",
+          "title": "LocalePak MCP server card"
+        },
+        {
+          "href": "https://www.localepak.com/.well-known/oauth-authorization-server",
+          "type": "application/json",
+          "rel": "describedby",
+          "title": "LocalePak authorization-server metadata (RFC 8414)"
+        },
+        {
+          "href": "https://www.localepak.com/.well-known/oauth-protected-resource",
+          "type": "application/json",
+          "rel": "describedby",
+          "title": "LocalePak protected-resource metadata (RFC 9728)"
+        }
+      ]
+    }
+  ]
+}
