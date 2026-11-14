@@ -75,20 +75,45 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: path === '' ? 1.0 : 0.6,
   }))
 
-  const categoryRoutes = CATEGORIES.map((cat) => ({
-    url: canonicalUrl(`/category/${cat.id}`),
-    changeFrequency: 'weekly' as const,
-    priority: 0.8,
-  }))
+  // Seeded-only sitemap (2026-11-14, ported from PakListings — same
+  // pattern, same reason): only pages with at least one seed listing
+  // are listed. City, category and city×category pages with no
+  // listings noindex themselves, so listing them here would hand
+  // Google empty pages — the thin-content pattern behind 'low value
+  // content' rejections — AND every sitemap URL gets systematically
+  // crawled, so each empty dynamic combo costs an ISR write on first
+  // hit (LocalePak Nov 13: 36,012 writes vs PakListings 5,530, same
+  // day, same cause: LP sitemap 854 URLs vs PL 142). Owner-added
+  // listings are discovered via /businesses and search, plus the
+  // listing-backed gap extensions below — not via this static list.
+  // The pages themselves still exist as routes; they are only out of
+  // the sitemap until a listing lands in them.
+  const seededCategories = new Set(SEED_BUSINESSES.map((b) => b.categorySlug))
+  const seededCities = new Set(SEED_BUSINESSES.map((b) => b.citySlug))
+  const seededCityCategories = new Set(
+    SEED_BUSINESSES.map((b) => `${b.citySlug}/${b.categorySlug}`)
+  )
 
-  const cityRoutes = CITIES.map((city) => ({
-    url: canonicalUrl(`/city/${citySlug(city)}`),
-    changeFrequency: 'weekly' as const,
-    priority: 0.8,
-  }))
+  const categoryRoutes = CATEGORIES.filter((cat) => seededCategories.has(cat.id)).map(
+    (cat) => ({
+      url: canonicalUrl(`/category/${cat.id}`),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    })
+  )
+
+  const cityRoutes = CITIES.filter((city) => seededCities.has(citySlug(city))).map(
+    (city) => ({
+      url: canonicalUrl(`/city/${citySlug(city)}`),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    })
+  )
 
   const cityCategoryRoutes = TOP_CITIES.flatMap((city) =>
-    CATEGORIES.map((cat) => ({
+    CATEGORIES.filter((cat) =>
+      seededCityCategories.has(`${citySlug(city)}/${cat.id}`)
+    ).map((cat) => ({
       url: canonicalUrl(`/city/${citySlug(city)}/${cat.id}`),
       changeFrequency: 'weekly' as const,
       priority: 0.7,
